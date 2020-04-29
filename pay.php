@@ -17,10 +17,10 @@ $api = new Api($keyId, $keySecret);
 if($_GET['checkout']=='automatic'){
 $orderData = [
     'receipt'         => 3456,
-    'amount'          => 1 * 100, // 2000 rupees in paise
+    'amount'          => 2 * 100, // 2000 rupees in paise
     'currency'        => 'INR',
     'payment_capture' => 1, // auto capture
-
+    'offer_id' => 'offer_EkGQwBd4QbjcSj',
 ];
 }
 else{
@@ -29,6 +29,7 @@ else{
       'amount'          => 2000 * 100, // 2000 rupees in paise
       'currency'        => 'INR',
       'payment_capture' => 1, // auto capture
+      'offer_id' => 'offer_EkGOOA4Wh4qBsC',
 
   ];
 }
@@ -105,8 +106,9 @@ else{
       "theme"             => [
       "color"             => "#F37254"
       ],
+
       "order_id"          => $razorpayOrderId,
-      
+
       "method" => [
       "netbanking" => "false",
       "card"=> "true",
