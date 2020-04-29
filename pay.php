@@ -20,7 +20,7 @@ $orderData = [
     'amount'          => 2 * 100, // 2000 rupees in paise
     'currency'        => 'INR',
     'payment_capture' => 1, // auto capture
-    'offer_id' => 'offer_EkGQwBd4QbjcSj',
+    'offer_id' => 'offer_EkISDxfRW18gtY',
 ];
 }
 else{
@@ -29,7 +29,7 @@ else{
       'amount'          => 2000 * 100, // 2000 rupees in paise
       'currency'        => 'INR',
       'payment_capture' => 1, // auto capture
-      'offer_id' => 'offer_EkGOOA4Wh4qBsC',
+      'offer_id' => 'offer_EkIX8NbX923Yf6',
 
   ];
 }
