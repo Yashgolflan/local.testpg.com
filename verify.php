@@ -35,7 +35,6 @@ if (empty($_POST['razorpay_payment_id']) === false)
         $error = 'Razorpay Error : ' . $e->getMessage();
     }
 }
-
 if ($success === true)
 {
     if(isset($_POST['pre-auth'])&&$_POST['pre-auth']=="pre-auth")

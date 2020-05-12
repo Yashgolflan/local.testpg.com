@@ -9,7 +9,10 @@ session_start();
 use Razorpay\Api\Api;
 
 $api = new Api($keyId, $keySecret);
-
+//$payment = $api->payment->fetch('pay_EkJgBUkJfXnxAw');//fetch payment through id;
+//echo(serialize($payment['order_id']));//fetch orderid from above array
+// echo(serialize($api->card->fetch($payment['card_id'])));//last 4 digits of card /details
+//echo(serialize($api->order->fetch($payment['order_id'])));
 //
 // We create an razorpay order using orders api
 // Docs: https://docs.razorpay.com/docs/orders
@@ -20,7 +23,7 @@ $orderData = [
     'amount'          => 2 * 100, // 2000 rupees in paise
     'currency'        => 'INR',
     'payment_capture' => 1, // auto capture
-    'offer_id' => 'offer_EkISDxfRW18gtY',
+  //  'offer_id' => 'offer_EkISDxfRW18gtY',
 ];
 }
 else{
@@ -29,7 +32,7 @@ else{
       'amount'          => 2000 * 100, // 2000 rupees in paise
       'currency'        => 'INR',
       'payment_capture' => 1, // auto capture
-      'offer_id' => 'offer_EkIX8NbX923Yf6',
+    //  'offer_id' => 'offer_EkIX8NbX923Yf6',
 
   ];
 }
@@ -127,5 +130,35 @@ if ($displayCurrency !== 'INR')
 }
 
 $json = json_encode($data);
+$client = new http\Client;
+$request = new http\Client\Request;
+$request->setRequestUrl('https://api.razorpay.com/v1/payments/create/redirect');
+$request->setRequestMethod('POST');
+$body = new http\Message\Body;
+$body->append('{
+"amount": 100,
+"currency": "INR",
+"contact": 8888888888,
+"email": "gaurav@gmail.com",
+"order_id": "order_4xbQrmEoA5WJ0G",
+"method": "card",
+"card":{
+"number": "4111111111111111",
+"name": "Gaurav",
+"expiry_month": 11,
+"expiry_year": 23,
+"cvv": 100
+}
+}');
+$request->setBody($body);
+$request->setOptions(array());
+$request->setHeaders(array(
+'Authorization' => 'Basic cnpwX3Rlc3RfRFNmQWFaQW5YYVdwMGo6Ukd1WjEzamZOQzk4cm83eWgwTXBuaWxq',
+'Content-Type' => 'application/json'
+));
+$client->enqueue($request)->send();
+$response = $client->getResponse();
+echo $response->getBody();
 
-require("checkout/{$checkout}.php");
+//require("checkout/{$checkout}.php");
+?>
